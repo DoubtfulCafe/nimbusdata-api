@@ -1,0 +1,13 @@
+##build y testeo
+docker buildx build --platform linux/amd64 -t nimbusdata:latest . --load
+docker run -d -p 8000:80 --name nimbusdataapi-container --env-file .env nimbusdata:latest
+
+az login
+
+az acr login --name acrnimbusdatadev
+
+docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:latest
+docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:0.1.0
+
+docker push acrnimbusdatadev.azurecr.io/nimbusdata:latest
+docker push acrnimbusdatadev.azurecr.io/nimbusdata:0.1.0
