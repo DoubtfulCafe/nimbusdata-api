@@ -14,9 +14,9 @@ az acr login --name acrnimbusdatadev
 
 con esto crearas dos imagenes mas, mas que todo esto te ayuda al control de versiones 
 docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:latest
-docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:0.2.0
+docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:0.3.0
 
 
 y con este los vas a pushear en el azure container registry
 docker push acrnimbusdatadev.azurecr.io/nimbusdata:latest
-docker push acrnimbusdatadev.azurecr.io/nimbusdata:0.2.0
+docker push acrnimbusdatadev.azurecr.io/nimbusdata:0.3.0
