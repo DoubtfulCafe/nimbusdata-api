@@ -1,13 +1,22 @@
-##build y testeo
+##datos importanntes donde diga nimbusdata ese es el nombre de mi api
+##  y donde diga  acrnimbusdatadev ese es el nombre de mi azure container registry, asi que cambia esos nombres  de alli lo demnas es lo mismo
+
+
+esto sirve para hacer el primer build y testeo es lo primero que tienes que hacer para probar si tu api empaquetada funciona bien, 
 docker buildx build --platform linux/amd64 -t nimbusdata:latest . --load
 docker run -d -p 8000:80 --name nimbusdataapi-container --env-file .env nimbusdata:latest
 
-az login
 
+##si llega a funcionar bien el contenedor entonces en la terminal donde esta tu proyecto inicia sesion en azure con el siguiente comando:
+az login
+## luego con este te sirve para inicar sesion en tu azure container registry
 az acr login --name acrnimbusdatadev
 
+con esto crearas dos imagenes mas, mas que todo esto te ayuda al control de versiones 
 docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:latest
-docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:0.1.0
+docker tag nimbusdata:latest acrnimbusdatadev.azurecr.io/nimbusdata:0.2.0
 
+
+y con este los vas a pushear en el azure container registry
 docker push acrnimbusdatadev.azurecr.io/nimbusdata:latest
-docker push acrnimbusdatadev.azurecr.io/nimbusdata:0.1.0
+docker push acrnimbusdatadev.azurecr.io/nimbusdata:0.2.0
